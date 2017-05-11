@@ -1,0 +1,29 @@
+/**
+ * 01. Colors
+ * 02. Sizes
+ * 03. Global Options
+ */
+
+
+/**
+ * 01. Colors
+ */
+$color-lightest-gray: #f4f4f4;
+$color-light-gray:    #eaeaea;
+$color-gray:          #dbdbdb;
+$color-dark-gray:     #95989a;
+
+
+/**
+ * 02. Sizes
+ */
+$topbar-height:        rem-calc(50);
+$topbar-height-small:  rem-calc(32);
+$topbar-support-width: rem-calc(300);
+
+
+/**
+ * 03. Global Options
+ */
+$global-timing: 400ms;
+$global-easing: ease-in-out;
