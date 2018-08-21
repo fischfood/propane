@@ -22,7 +22,7 @@ class HatchUtilities {
 		add_action( 'edit_category', array( $this, 'category_transient_flusher' ) );
 		add_action( 'save_post',     array( $this, 'category_transient_flusher' ) );
 
-		add_action( 'hatch_before_content', array( 'HatchUtilities', 'breadcrumbs' ) );
+		add_action( 'rebar_before_content', array( 'HatchUtilities', 'breadcrumbs' ) );
 	}
 
 	/**
@@ -34,7 +34,7 @@ class HatchUtilities {
 	 * @return bool
 	 */
 	static function categorized_blog() {
-		if ( false === ( $all_the_cool_cats = get_transient( 'hatch_categories' ) ) ) {
+		if ( false === ( $all_the_cool_cats = get_transient( 'rebar_categories' ) ) ) {
 
 			// Create an array of all the categories that are attached to posts.
 			$all_the_cool_cats = get_categories( array(
@@ -48,7 +48,7 @@ class HatchUtilities {
 			// Count the number of categories that are attached to the posts.
 			$all_the_cool_cats = count( $all_the_cool_cats );
 
-			set_transient( 'hatch_categories', $all_the_cool_cats );
+			set_transient( 'rebar_categories', $all_the_cool_cats );
 		}
 
 		if ( $all_the_cool_cats > 1 ) {
@@ -67,7 +67,7 @@ class HatchUtilities {
 	 * @return void
 	 */
 	function category_transient_flusher() {
-		delete_transient( 'hatch_categories' ); // Like, beat it. Dig?
+		delete_transient( 'rebar_categories' ); // Like, beat it. Dig?
 	}
 
 	/**
@@ -192,28 +192,28 @@ class HatchUtilities {
 }
 
 /**
- * Utility method for hatch_breadcrumbs function.
+ * Utility method for rebar_breadcrumbs function.
  *
  * @access public
  */
-function hatch_breadcrumbs() {
+function rebar_breadcrumbs() {
 	HatchUtilities::breadcrumbs();
 }
 
 /**
- * Utility method for hatch_categorized_blog function.
+ * Utility method for rebar_categorized_blog function.
  *
  * @access public
  */
-function hatch_categorized_blog() {
+function rebar_categorized_blog() {
 	HatchUtilities::categorized_blog();
 }
 
 /**
- * Utility method for hatch_comment_nav function.
+ * Utility method for rebar_comment_nav function.
  *
  * @access public
  */
-function hatch_comment_nav() {
+function rebar_comment_nav() {
 	HatchUtilities::comment_nav();
 }

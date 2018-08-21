@@ -51,7 +51,7 @@ class Propane {
 		add_action( 'customize_register',	array( $this, 'customize_register' ) );
 
 		add_action( 'after_setup_theme', 	array( $this, 'after_setup_theme' ) );
-		//add_action( 'after_setup_theme',	array( $this, 'add_editor_styles' ) );
+		add_action( 'after_setup_theme',	array( $this, 'add_editor_styles' ) );
 	}
 
 	/**
@@ -64,7 +64,8 @@ class Propane {
 		register_nav_menus( array(
 		    'top-bar' 			=> 'Top Bar', // registers the menu in the WordPress admin menu editor
 		    'footer' 			=> 'Footer',
-		    'mobile-off-canvas' => 'Mobile (Off Canvas)'
+		    'mobile-off-canvas' => 'Mobile (Off Canvas)',
+		    'social'            => 'Social Links',
 		));
 	}
 
@@ -76,7 +77,7 @@ class Propane {
 	 * @return void
 	 */
 	function admin_footer_text() {
-		echo 'Powered by <a href="http://www.wordpress.org" target="_blank">WordPress</a> | Created by <a href="http://brianfischer.me/?utm_source=hatch&utm_medium=hatch_footer&utm_campaign=hatch_notice" target="_blank">Brian Fischer</a> and augmented by the <a href="http://github.com/linchpinagency/hatch/?utm_source=hatch&utm_medium=hatch_footer&utm_campaign=hatch_notice" target="_blank">Hatch</a>';
+		echo 'Powered by <a href="http://www.wordpress.org" target="_blank">WordPress</a> | Created by <a href="https://brianfischer.me/?utm_source=hatch&utm_medium=rebar_footer&utm_campaign=rebar_notice" target="_blank">Brian Fischer</a> and augmented by the <a href="http://github.com/linchpin/rebar/?utm_source=hatch&utm_medium=rebar_footer&utm_campaign=rebar_notice" target="_blank">Rebar</a>';
 	}
 
 	/**
@@ -266,7 +267,7 @@ class Propane {
 	 * add customized styles to the WordPress admin to match frontend editing
 	 */
 	function add_editor_styles() {
-		$admin_style = get_stylesheet_directory_uri() . '/css/editor.css';
+		$admin_style = get_stylesheet_directory_uri() . '/css/admin-editor.css';
 
 	    add_editor_style( $admin_style );
 	}

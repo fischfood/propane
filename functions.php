@@ -15,7 +15,7 @@
  */
 
 // Useful global constants
-define( 'PROPANE_VERSION', '' );
+define( 'PROPANE_VERSION', '1.0.0' );
 
 if ( ! defined( 'SCRIPT_DEBUG' ) ) {
 	define( 'SCRIPT_DEBUG', true ); // enable script debug by default
@@ -30,3 +30,10 @@ include_once( 'includes/Propane.php' ); // Theme Class
  */
 
 $theme = new Propane();
+
+global $rebar_templates_with_title;
+
+$rebar_templates_with_title = array(
+	'page-beefy-header.php',
+	'page-slim-header.php'
+);

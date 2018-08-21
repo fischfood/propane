@@ -7,7 +7,8 @@ linchpin.utils = function( $ ) {
 	// Private Variables
 	var $win  = $(window),
         $body = $('body'),
-		$doc  = $(document);
+		$doc  = $(document),
+        $equalizers = $('[data-lp-equal]');
 
 	return {
 
@@ -203,64 +204,97 @@ linchpin.utils = function( $ ) {
 			});
 		},
 
-		/**
-		 * Equalize heights for multiple children
-		 * @author mmorgan
-		 */
-		lp_equalizer : function () {
-	        var $this = $(this), // Parent item with data-lp-equal tag
-	        	$items = $this.data('lp-equal-items'), // Items that hold the children to be equalized
-	        	$children = $this.data('lp-equal-children'), // String of elements to equal, comma seperated
-		        _tall; // Set this for future use
+        /**
+         * function lp_equalizer
+         *
+         * Equalize heights for multiple children
+         */
+        lp_equalizer : function () {
+            var $this = $(this), // Parent item with data-lp-equal tag
+                $items = $this.data('lp-equal-items'), // Items that hold the children to be equalized
+                $children = $this.data('lp-equal-children'), // String of elements to equal, comma seperated
+                flexHeight = $this.data('lp-equal-flex'),
+                flexHeight = flexHeight == true || flexHeight == 'true',
+                _children,
+                _tall,
+                equalize = true; // Set this for future use
 
-		    // If children are set, make an array of them
-		    if ( $children != ('' || null || undefined) ) var _children = $children.split(',');
+            if ( flexHeight ) {
+                var cssProp = 'min-height';
+            } else {
+                var cssProp = 'height';
+            }
 
-	        // If data-lp-equal-items is not set, have $items be the direct children of the parent element
-	        if ( $items == ('' || null || undefined) ) $items = $this.children();
+            if ( $this.data('lp-equal') == 'medium-up' && window.innerWidth < 768 ) {
+                equalize = false;
+            }
 
-	        // If the children are set, equalize each child in the items
-	        if ( $children != ('' || null || undefined) ) {
+            // If children are set, make an array of them
+            if ( $children != ('' || null || undefined) ) {
+                _children = $children.split(',');
+            }
 
-		        // Loop through each child element to equalize
-		        for ( var i = 0; i < _children.length; i++ ) {
-			        _tall = 0; // Reset to 0 for each element being equalized
+            // If data-lp-equal-items is not set, have $items be the direct children of the parent element
+            if ( $items == ('' || null || undefined) ) $items = $this.children();
 
-			        // Check the heights and find the tallest of a given element
-			        // in an items parent container.
-			        $($items, $this).find(_children[i]).each(function () {
-				        var $item = $(this);
+            // If the children are set, equalize each child in the items
+            if ( $children != ('' || null || undefined) ) {
 
-				        if  ( $item.height() > _tall ) _tall = $item.height();
-				    } ).height(_tall);
-			        // Then set the height of that element.
-			    }
+                // Loop through each child element to equalize
+                for ( var i = 0; i < _children.length; i++ ) {
+                    _tall = 0; // Reset to 0 for each element being equalized
 
-		    // If no child are set, do a standard equalize to each item
-		    } else {
+                    // Loop through and remove inline height style
+                    // before looping for tallest element.
+                    $($items, $this).find(_children[i]).each(function () {
+                        var $item = $(this),
+                            item_styles = $item.attr('style'),
+                            pattern     = new RegExp( '(' + cssProp + '.*;)', 'g' );
 
-		        _tall = 0;
+                        if ( item_styles ) {
+                            $item.attr('style', item_styles.replace( pattern, '' ) ).removeClass('lp-equalized');
+                        }
 
-		        $($items, $this).each(function () {
-			        if ( $(this).height() > _tall ) _tall = $(this).height();
-			    } ).height(_tall);
+                    } );
 
-			}
+                    // Check the heights and find the tallest of a given element
+                    // in an items parent container.
+                    if ( equalize ) {
+                        $($items, $this).find(_children[i]).each(function () {
+                            var $item = $(this);
 
+                            if  ( $item.height() > _tall ) _tall = $item.outerHeight();
+                        } ).css( cssProp, ( 2 * Math.round( _tall / 2 ) ) );
+                        // Then set the height of that element.
+                    }
+                }
 
-	        /* Quick example of markup
-		     * <div data-lp-equal data-lp-equal-items="article" data-lp-equal-children="h2, .post-text">
-		     *  <article>
-		     *    <h2>Article title</h2>
-		     *    <p class="post-text">Lorem ipsum</p>
-		     *  </article>
-		     *
-		     *  <article>
-		     *    <h2>Article title for the second article is a lot longer.</h2>
-		     *    <p class="post-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-		     *  </article>
-		     * </div>
-		     */
+                if ( equalize ) {
+                    $($items, $this).each(function () {
+                        $(this).addClass('lp-equalized');
+                    } );
+                }
+
+                // If no child are set, do a standard equalize to each item
+            } else {
+                _tall = 0;
+
+                $($items, $this).each(function () {
+                    var $item = $(this),
+                        item_styles = $item.attr('style'),
+                        pattern     = new RegExp( '(' + cssProp + '.*;)', 'g' );
+
+                    if ( item_styles ) {
+                        $item.attr('style', item_styles.replace( pattern, '' ) ).removeClass('lp-equalized');
+                    }
+                } );
+
+                if ( equalize ) {
+                    $($items, $this).each(function () {
+                        if ( $(this).height() > _tall ) _tall = $(this).height();
+                    } ).css( cssProp, ( 2 * Math.round( _tall / 2 ) ) ).addClass('lp-equalized');
+                }
+            }
         },
 
 		/**
@@ -312,11 +346,14 @@ linchpin.utils = function( $ ) {
 
 			.bind('gform_post_render', linchpin.utils.setup_form_fields);
 
-			var $equalizers = $('[data-lp-equal]');
+            if ( $equalizers.length ) {
+                $(window).on('resize', function() {
+                    $equalizers.each( linchpin.utils.lp_equalizer );
+                });
 
-			if ( $equalizers.length ) {
-				$equalizers.each( linchpin.utils.lp_equalizer );
-			}
+                $equalizers.each( linchpin.utils.lp_equalizer );
+
+            }
 		}
 	};
 }(jQuery);

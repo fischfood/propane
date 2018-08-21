@@ -2,7 +2,7 @@
 /**
  * Header Template
  *
- * @since 0.1.0
+ * @since 1.0.0
  *
  * @package 
  * @subpackage Templates
@@ -20,28 +20,48 @@
 
 	<?php
 	/** This action is documented in includes/Linchpin/hatch-hooks.php */
-	do_action( 'hatch_head_scripts' ); ?>
+	do_action( 'rebar_head_scripts' ); ?>
 
 </head>
 <body <?php body_class(); ?>>
 
-<?php do_action( 'hatch_body_tag_after' ); ?>
+<?php do_action( 'rebar_body_tag_after' ); ?>
 
-<div class="off-canvas-wrap" data-offcanvas>
-	<div class="inner-wrap">
+<div class="off-canvas-wrapper">
+	<div class="off-canvas position-right" id="offCanvas" data-off-canvas>
+		<?php
+		wp_nav_menu( array(
+			'container'       => false,
+			'container_class' => '',
+			'menu'            => '',
+			'menu_class'      => 'off-canvas-list',
+			'items_wrap'      => '<ul id="%1$s" class="%2$s" data-drilldown>%3$s</ul>',
+			'theme_location'  => 'mobile-off-canvas',
+			'before'          => '',
+			'after'           => '',
+			'link_before'     => '',
+			'link_after'      => '',
+			'depth'           => 5,
+			'fallback_cb'     => false,
+			'walker'          => new Foundation_Walker_Nav_Menu(), // Use Custom Foundation Walker.
+		) );
+		?>
+	</div>
+
+	<div class="inner-wrap off-canvas-content" data-off-canvas-content>
 
 		<?php
 		/** This action is documented in includes/Linchpin/hatch-hooks.php */
-		do_action( 'hatch_layout_start' ); ?>
+		do_action( 'rebar_layout_start' ); ?>
 
 		<?php
 		/** This action is documented in includes/Linchpin/hatch-hooks.php */
-		do_action( 'hatch_header_before' ); ?>
+		do_action( 'rebar_header_before' ); ?>
 
-		<?php get_template_part( 'includes/partials/navigation' ); ?>
+		<?php get_template_part( 'partials/navigation' ); ?>
 
 		<?php
 		/** This action is documented in includes/Linchpin/hatch-hooks.php */
-		do_action( 'hatch_header_after' ); ?>
+		do_action( 'rebar_header_after' ); ?>
 
-		<section class="container" role="document">
+		<section role="document">

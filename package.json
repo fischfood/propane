@@ -1,13 +1,13 @@
 {
   "name": "propane",
   "title": "Propane",
-  "description": "Flat River Road",
-  "version": "0.1.0",
-  "homepage": "http://4027frr.com",
+  "description": "4027 FRR",
+  "version": "1.0.0",
+  "homepage": "http://4027frr.co",
   "author": {
     "name": "Brian Fischer",
-    "email": "contact@brianfischer.me",
-    "url": "http://brianfischer.me"
+    "email": "themes@brianfischer.me",
+    "url": "https://brianfischer.me"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
@@ -16,7 +16,8 @@
     "gulp-imagemin": "^2.4.0",
     "gulp-sass": "^2.2.0",
     "gulp-watch": "^4.3.5",
-    "imagemin-pngquant": "^4.2.2"
+    "imagemin-pngquant": "^4.2.2",
+    "gulp-bump": "^3.1.0"
   },
   "keywords": []
 }

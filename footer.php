@@ -4,61 +4,84 @@
  *
  * All stuff that should typically be in the footer.
  *
- * @since 0.1.0
+ * @since 1.0.0
  *
  * @package 
  * @subpackage Templates
  */
 
 ?>
+
 				</section>
 
 				<?php
 				/** This action is documented in includes/Linchpin/hatch-hooks.php */
-				do_action( 'hatch_footer_before' ); ?>
+				do_action( 'rebar_footer_before' ); ?>
 
-				<footer class="row">
-
-					<?php
-					/** This action is documented in includes/Linchpin/hatch-hooks.php */
-					do_action( 'hatch_footer_inner_before' ); ?>
-
-					<?php dynamic_sidebar( 'footer-widgets' ); ?>
-
-					<?php
-					/** This action is documented in includes/Linchpin/hatch-hooks.php */
-					do_action( 'hatch_footer_inner_after' ); ?>
-
-					<nav id="footer-navigation">
+				<footer id="footer">
+					<div class="main-footer container small">
 						<?php
-						wp_nav_menu( array(
-							'container'       => false,
-							'container_class' => '',
-							'menu'            => '',
-							'menu_class'      => 'footer-menu',
-							'theme_location'  => 'footer',
-							'before'          => '',
-							'after'           => '',
-							'link_before'     => '',
-							'link_after'      => '',
-							'depth'           => 5,
-							'fallback_cb'     => false,
-							'walker'          => new Foundation_Walker_Nav_Menu(),
-						) );
-						?>
-					</nav>
+						/** This action is documented in includes/Linchpin/hatch-hooks.php */
+						do_action( 'rebar_main_footer_inner_before' ); ?>
 
+						<div class="row">
+							<div class="small-12 columns">
+
+								<?php dynamic_sidebar( 'footer-widgets' ); ?>
+
+							</div>
+						</div>
+
+						<?php
+						/** This action is documented in includes/Linchpin/hatch-hooks.php */
+						do_action( 'rebar_main_footer_inner_after' ); ?>
+					</div>
+
+					<div class="sub-footer container small">
+						<?php
+						/** This action is documented in includes/Linchpin/hatch-hooks.php */
+						do_action( 'rebar_sub_footer_inner_before' ); ?>
+
+						<div class="row">
+							<div class="small-12 medium-6 columns">
+								<?php
+									wp_nav_menu( array(
+										'container'       => false,
+										'container_class' => '',
+										'menu'            => '',
+										'menu_class'      => 'social menu',
+										'theme_location'  => 'social',
+										'before'          => '',
+										'after'           => '',
+										'link_before'     => '',
+										'link_after'      => '',
+										'depth'           => 5,
+										'fallback_cb'     => false,
+										'walker'          => new Foundation_Walker_Nav_Menu(),
+									) );
+								?>
+							</div>
+
+							<div class="small-12 medium-6 columns text-right">
+								<?php echo sprintf( '&copy; %s %s. All Rights Reserved.', date( 'Y' ), __( get_bloginfo( 'name' ), 'propane' ) ); ?>
+							</div>
+						</div>
+
+						<?php
+						/** This action is documented in includes/Linchpin/hatch-hooks.php */
+						do_action( 'rebar_sub_footer_inner_after' ); ?>
+					</div>
 				</footer>
 
 				<?php
 				/** This action is documented in includes/Linchpin/hatch-hooks.php */
-				do_action( 'hatch_footer_after' ); ?>
+				do_action( 'rebar_footer_after' ); ?>
 
 				<a class="exit-off-canvas"></a>
 
 				<?php
 				/** This action is documented in includes/Linchpin/hatch-hooks.php */
-				do_action( 'hatch_layout_end' ); ?>
+				do_action( 'rebar_layout_end' ); ?>
 
 			</div>
 		</div>
@@ -75,6 +98,6 @@
 		 *
 		 */
 		/** This action is documented in includes/Linchpin/hatch-hooks.php */
-		do_action( 'hatch_body_before_close' ); ?>
+		do_action( 'rebar_body_before_close' ); ?>
 	</body>
 </html>

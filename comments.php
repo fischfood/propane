@@ -4,7 +4,7 @@
  *
  * @todo This file could definitely use some cleanup -aware
  *
- * @since 0.1.0
+ * @since 1.0.0
  *
  * @package 
  * @subpackage Comments
@@ -28,7 +28,7 @@ if ( post_password_required() ) : ?>
 
 <?php
 /** This action is documented in includes/Linchpin/hatch-hooks.php */
-do_action( 'hatch_comments_before' ); ?>
+do_action( 'rebar_comments_before' ); ?>
 
 <div id="comments" class="comments-area">
 
@@ -40,7 +40,7 @@ do_action( 'hatch_comments_before' ); ?>
 			?>
 		</h2>
 
-		<?php hatch_comment_nav(); ?>
+		<?php rebar_comment_nav(); ?>
 
 		<ol class="comment-list">
 			<?php
@@ -52,7 +52,7 @@ do_action( 'hatch_comments_before' ); ?>
 			?>
 		</ol><!-- .comment-list -->
 
-		<?php hatch_comment_nav(); ?>
+		<?php rebar_comment_nav(); ?>
 
 	<?php endif; // have_comments() ?>
 
@@ -69,6 +69,6 @@ do_action( 'hatch_comments_before' ); ?>
 
 <?php
 /** This action is documented in includes/Linchpin/hatch-hooks.php */
-do_action( 'hatch_comments_after' );
+do_action( 'rebar_comments_after' );
 
 endif;

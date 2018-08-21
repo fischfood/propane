@@ -4,7 +4,7 @@
  *
  * Default template utilized for single posts
  *
- * @since 0.1.0
+ * @since 1.0.0
  *
  * @package 
  * @subpackage Templates
@@ -13,10 +13,10 @@
 ?>
 <?php get_header(); ?>
 
-	<div class="row">
+	<div class="row container">
 		<div class="small-12 medium-8 columns" role="main">
 
-			<?php do_action( 'hatch_content_before' ); ?>
+			<?php do_action( 'rebar_content_before' ); ?>
 
 			<?php while ( have_posts() ) : the_post(); ?>
 
@@ -24,7 +24,7 @@
 
 			<?php endwhile; ?>
 
-			<?php do_action( 'hatch_after_content' ); ?>
+			<?php do_action( 'rebar_after_content' ); ?>
 
 		</div>
 		<?php get_sidebar(); ?>

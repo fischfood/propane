@@ -4,7 +4,7 @@
  *
  * Default template utilized for single posts
  *
- * @since 0.1.0
+ * @since 1.0.0
  *
  * @package 
  * @subpackage Templates
@@ -13,18 +13,18 @@
 ?>
 <?php get_header(); ?>
 
-<div class="row">
+<div class="row container">
 	<div class="small-12 large-8 large-push-4 columns" role="main">
 
 		<?php
 		/** This action is documented in includes/Linchpin/hatch-hooks.php */
-		do_action( 'hatch_content_before' ); ?>
+		do_action( 'rebar_content_before' ); ?>
 
 		<?php if ( have_posts() ) : ?>
 
 			<?php
 			/** This action is documented in includes/Linchpin/hatch-hooks.php */
-			do_action( 'hatch_loop_before' ); ?>
+			do_action( 'rebar_loop_before' ); ?>
 
 			<?php while ( have_posts() ) : the_post(); ?>
 
@@ -34,7 +34,7 @@
 
 			<?php
 			/** This action is documented in includes/Linchpin/hatch-hooks.php */
-			do_action( 'hatch_loop_after' ); ?>
+			do_action( 'rebar_loop_after' ); ?>
 
 		<?php else : ?>
 
@@ -44,16 +44,10 @@
 
 		<?php
 		/** This action is documented in includes/Linchpin/hatch-hooks.php */
-		do_action( 'hatch_content_after' ); ?>
-
-		<?php
-
-		// If comments are open or we have at least one comment, load up the comment template.
-		if ( comments_open() || get_comments_number() ) :
-			comments_template();
-		endif; ?>
+		do_action( 'rebar_content_after' ); ?>
 
 	</div>
-	<?php get_sidebar(); ?>
+
+	<?php get_sidebar( 'left' ); ?>
 </div>
 <?php get_footer();

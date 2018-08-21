@@ -104,7 +104,7 @@ class FoundationUtilities {
  *
  * @access public
  */
-function hatch_menu_fallback() {
+function rebar_menu_fallback() {
 	echo FoundationUtilities::menu_fallback();
 }
 
@@ -118,7 +118,7 @@ function hatch_menu_fallback() {
  * @param mixed $prev_text Text for our previous link.
  * @param mixed $next_text Text for our next link.
  */
-function hatch_pagination( $prev_text, $next_text ) {
+function rebar_pagination( $prev_text, $next_text ) {
 	echo FoundationUtilities::paginate_links( $prev_text, $next_text );
 }
 
@@ -130,7 +130,7 @@ function hatch_pagination( $prev_text, $next_text ) {
  * @access public
  * @return void
  */
-function hatch_entry_meta() {
+function rebar_entry_meta() {
 	?>
 	<time class="updated" datetime="<?php echo get_the_time( 'c' ); ?>" pubdate><?php printf( esc_html( __( 'Posted on %s at %s.', 'hatch' ) ), get_the_time( 'l, F jS, Y' ), get_the_time() ); ?></time>
 	<p class="byline author"><?php esc_html_e( 'Written by ', 'hatch' ); ?><a href="<?php esc_attr_e( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" rel="author" class="fn"><?php echo get_the_author(); ?></a></p>
@@ -141,7 +141,7 @@ function hatch_entry_meta() {
  * Left top bar
  * http://codex.wordpress.org/Function_Reference/wp_nav_menu
  */
-function hatch_top_bar_l() {
+function rebar_top_bar_l() {
 	wp_nav_menu( array(
 		'container'       => false,
 		'container_class' => '',
@@ -162,7 +162,7 @@ function hatch_top_bar_l() {
  * Right top bar
  * http://codex.wordpress.org/Function_Reference/wp_nav_menu
  */
-function hatch_top_bar_r() {
+function rebar_top_bar_r() {
 	wp_nav_menu( array(
 		'container'       => false,
 		'container_class' => '',
@@ -182,7 +182,7 @@ function hatch_top_bar_r() {
 /**
  * Footer
  */
-function hatch_footer() {
+function rebar_footer() {
 	wp_nav_menu( array(
 		'container'       => false,
 		'container_class' => '',
@@ -201,7 +201,7 @@ function hatch_footer() {
 /**
  * Mobile off-canvas
  */
-function hatch_mobile_off_canvas() {
+function rebar_mobile_off_canvas() {
 	wp_nav_menu( array(
 		'container'       => false,
 		'container_class' => '',
