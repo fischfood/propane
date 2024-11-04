@@ -4,29 +4,27 @@
  *
  * The default template for displaying content. Used within single and index/archive/search templates.
  *
- * @since 1.0.0
+ * @since 0.1.0
  *
  * @package 
  * @subpackage Templates
  */
 
-global $rebar_templates_with_title;
 ?>
 
 <?php
 /** This action is documented in includes/Linchpin/hatch-hooks.php */
-do_action( 'rebar_post_before' ); ?>
+do_action( 'hatch_post_before' ); ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-    <?php if ( ! in_array( basename( get_page_template() ), $rebar_templates_with_title ) ) : ?>
-        <header>
-            <h1><?php the_title(); ?></h1>
-        </header>
-    <?php endif; ?>
+	<header>
+		<h1><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
+		<?php hatch_entry_meta(); ?>
+	</header>
 
 	<?php
 	/** This action is documented in includes/Linchpin/hatch-hooks.php */
-	do_action( 'rebar_post_entry_content_before' ); ?>
+	do_action( 'hatch_post_entry_content_before' ); ?>
 
 	<div class="entry-content">
 		<?php the_content( __( 'Continue reading...', 'propane' ) ); ?>
@@ -34,11 +32,17 @@ do_action( 'rebar_post_before' ); ?>
 
 	<?php
 	/** This action is documented in includes/Linchpin/hatch-hooks.php */
-	do_action( 'rebar_post_entry_content_after' ); ?>
+	do_action( 'hatch_post_entry_content_after' ); ?>
 
-	<?php get_template_part( 'partials/edit-controls' ); ?>
+	<footer>
+		<?php $tag = get_the_tags(); if ( $tag ) : ?><p><?php the_tags(); ?></p><?php endif; ?>
+	</footer>
+
+	<?php get_template_part( 'includes/partials/edit-controls' ); ?>
+
+	<hr />
 </article>
 
 <?php
 /** This action is documented in includes/Linchpin/hatch-hooks.php */
-do_action( 'rebar_post_after');
+do_action( 'hatch_post_after');

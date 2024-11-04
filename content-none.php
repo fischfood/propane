@@ -4,7 +4,7 @@
  *
  * The template used for displaying a "No posts found" message.
  *
- * @since 1.0.0
+ * @since 0.1.0
  *
  * @package 
  * @subpackage Templates
@@ -14,7 +14,7 @@
 
 <?php
 /** This action is documented in includes/Linchpin/hatch-hooks.php */
-do_action( 'rebar_post_before' ); ?>
+do_action( 'hatch_post_before' ); ?>
 
 <header class="page-header">
 	<h1 class="page-title"><?php esc_html_e( 'Nothing Found', 'propane' ); ?></h1>
@@ -40,4 +40,4 @@ do_action( 'rebar_post_before' ); ?>
 
 <?php
 /** This action is documented in includes/Linchpin/hatch-hooks.php */
-do_action( 'rebar_post_after' );
+do_action( 'hatch_post_after' );

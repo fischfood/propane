@@ -36,21 +36,21 @@ class HatchOptions {
 	 * @return void
 	 */
 	function init() {
-		if ( false === rebar_get_theme_options() ) {
-			add_option( 'rebar_theme_options', self::get_default_theme_options() );
+		if ( false === hatch_get_theme_options() ) {
+			add_option( 'hatch_theme_options', self::get_default_theme_options() );
 		}
 
-		register_setting( 'rebar_options', 'rebar_theme_options', array( &$this, 'theme_options_validate' ) );
+		register_setting( 'hatch_options', 'hatch_theme_options', array( &$this, 'theme_options_validate' ) );
 	}
 
 	/**
 	 * Display additional header scripts entered in the admin
 	 */
 	function wp_head() {
-		$rebar_options = rebar_get_theme_options();
+		$hatch_options = hatch_get_theme_options();
 
-		if( ! empty ( $rebar_options['additional_header_scripts'] ) ) {
-			echo wp_kses( $rebar_options['additional_header_scripts'], array(
+		if( ! empty ( $hatch_options['additional_header_scripts'] ) ) {
+			echo wp_kses( $hatch_options['additional_header_scripts'], array(
 				'script' => array(
 					'src' => array(),
 					'async'=> array(),
@@ -74,10 +74,10 @@ class HatchOptions {
 	 * Display additional footer scripts entered in the admin
 	 */
 	function wp_footer() {
-		$rebar_options = rebar_get_theme_options();
+		$hatch_options = hatch_get_theme_options();
 
-		if( ! empty ( $rebar_options['additional_footer_scripts'] ) ) {
-			echo wp_kses( $rebar_options['additional_footer_scripts'], array(
+		if( ! empty ( $hatch_options['additional_footer_scripts'] ) ) {
+			echo wp_kses( $hatch_options['additional_footer_scripts'], array(
 				'script' => array(
 					'src' => array(),
 					'async'=> array(),
@@ -103,7 +103,7 @@ class HatchOptions {
 	 * @todo we need to validate the settings better
 	 */
 	function validate_required_settings() {
-		global $rebar_options;
+		global $hatch_options;
 	}
 
 	/**
@@ -120,7 +120,7 @@ class HatchOptions {
 			'typekit_async'             => false,
 		);
 
-		return apply_filters( 'rebar_default_theme_options', $default_theme_options );
+		return apply_filters( 'hatch_default_theme_options', $default_theme_options );
 	}
 
 	/**
@@ -149,7 +149,7 @@ class HatchOptions {
 	 * @since 1.0
 	 */
 function theme_options_render_page() {
-	global $rebar_options, $linchpin_classes_dir;
+	global $hatch_options, $linchpin_classes_dir;
 	?>
 	<div class="wrap">
 		<div id="hatch-wrap">
@@ -164,25 +164,25 @@ function theme_options_render_page() {
 
 		<h2 class="nav-tab-wrapper">
 			<a href="?page=theme_options&tab=display_options"
-			   class="nav-tab <?php echo ( 'display_options' === $active_tab ) ? 'nav-tab-active' : ''; ?>"><?php printf( esc_html( __( '%s Additional Footer Content', 'hatch' ) ), esc_html( $current_theme->get( 'Name' ) ) ); ?></a>
+			   class="nav-tab <?php echo ( 'display_options' === $active_tab ) ? 'nav-tab-active' : ''; ?>"><?php printf( esc_html( __( '%s$1 Additional Footer Content', 'hatch' ) ), esc_html( $current_theme->get( 'Name' ) ) ); ?></a>
 			<a href="?page=theme_options&tab=script_options"
-			   class="nav-tab <?php echo ( 'script_options' === $active_tab ) ? 'nav-tab-active' : ''; ?>"><?php printf( esc_html( __( '%s Additional Scripts', 'hatch' ) ), esc_html( $current_theme->get( 'Name' ) ) ); ?></a>
+			   class="nav-tab <?php echo ( 'script_options' === $active_tab ) ? 'nav-tab-active' : ''; ?>"><?php printf( esc_html( __( '%s$1 Additional Scripts', 'hatch' ) ), esc_html( $current_theme->get( 'Name' ) ) ); ?></a>
 		</h2>
 
 		<?php settings_errors(); ?>
 
 		<form method="post" action="options.php">
 
-			<?php settings_fields( 'rebar_options' );
-			$rebar_options         = rebar_get_theme_options();
-			$rebar_default_options = self::get_default_theme_options();
+			<?php settings_fields( 'hatch_options' );
+			$hatch_options         = hatch_get_theme_options();
+			$hatch_default_options = self::get_default_theme_options();
 
 			if ( 'display_options' === $active_tab ) {
-				include_once( 'hatch-options/theme-options.php' );
+				require_once( $linchpin_classes_dir . '/hatch-options/theme-options.php' );
 			} elseif ( 'script_options' === $active_tab ) {
-				include_once( 'hatch-options/integration-options.php' );
+				require_once( $linchpin_classes_dir . '/hatch-options/integration-options.php' );
 			} ?>
-			<input type="hidden" value="1" name="rebar_theme_options[first_run]"/>
+			<input type="hidden" value="1" name="hatch_theme_options[first_run]"/>
 			<?php submit_button(); ?>
 		</form>
 	</div>
@@ -259,7 +259,7 @@ function admin_enqueue_scripts( $hook ) {
 	$sidebars = array();
 
 	foreach ( $wp_sidebars as $key => $sidebar ) {
-		$sidebars[ 'sidebar_layout_' . $key ] = get_option( 'rebar_sidebar_layout_' . $key, '' );
+		$sidebars[ 'sidebar_layout_' . $key ] = get_option( 'hatch_sidebar_layout_' . $key, '' );
 	}
 
 	$sidebar_options = array(
@@ -278,7 +278,7 @@ function admin_enqueue_scripts( $hook ) {
  * @author aware
  */
 function admin_head() {
-global $rebar_options;
+global $hatch_options;
 ?>
 	<script type="text/javascript">
 		//<![CDATA[
@@ -390,7 +390,7 @@ function admin_footer() {
 			'additional_header_scripts' => '',
 			'terms_conditions'          => '',
 			'footer_info'               => '',
-			'rebar_tracking'            => '',
+			'hatch_tracking'            => '',
 		);
 
 		$output = $defaults = self::get_default_theme_options();
@@ -410,18 +410,18 @@ function admin_footer() {
 			}
 		}
 
-		return apply_filters( 'rebar_theme_options_validate', $output, $input, $defaults );
+		return apply_filters( 'hatch_theme_options_validate', $output, $input, $defaults );
 	}
 }
 
 ?>
 <?php
 /**
- * rebar_get_theme_options function.
+ * hatch_get_theme_options function.
  *
  * @access public
  * @return array of theme options
  */
-function rebar_get_theme_options() {
-	return get_option( 'rebar_theme_options', HatchOptions::get_default_theme_options() );
+function hatch_get_theme_options() {
+	return get_option( 'hatch_theme_options', HatchOptions::get_default_theme_options() );
 }

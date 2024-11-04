@@ -1,4 +1,97 @@
-@import
-	'home',
-	'templates'
-;
+// 01. Pinball
+
+.pinball-scores-container {
+	img {
+		height: auto;
+		width: auto;
+		max-height: 200px;
+		max-width: 400px;
+	}
+
+	.pinball-score {
+		font-family: $pinball-font-family;
+		margin-top: 1rem;
+
+		&:nth-of-type(1) {
+			font-size: 32px;
+		}
+
+		&:nth-of-type(2) {
+			font-size: 26px;
+		}
+
+		&:nth-of-type(3) {
+			font-size: 20px;
+		}
+
+		.player {
+			font-size: 12px;
+			text-align: center;
+			display: block;
+		}
+	}
+}
+
+// Maintenance
+
+.maintenance-list {
+	position: relative;
+	border: 1px solid gray;
+
+	.maintenance-header {
+		background: gray;
+		color: white;
+	}
+
+	.small-4 + .small-4 {
+		border-left: 1px solid gray;
+	}
+	.maintenance-record {
+		border-top: 1px solid gray;
+	}
+
+	.cell {
+		padding: .5rem;
+	}
+
+	.notes {
+		border-top: 1px solid lightgray;
+		font-size: 12px;
+
+		&:empty {
+			display: none;
+		}
+	}
+}
+
+// Food Planning
+
+.food-planning-list {
+	position: relative;
+	border: 1px solid gray;
+
+	.food-planning-header {
+		background: gray;
+		color: white;
+	}
+
+	.small-4 + .small-4 {
+		border-left: 1px solid gray;
+	}
+	.food-planning-record {
+		border-top: 1px solid gray;
+	}
+
+	.cell {
+		padding: .5rem;
+	}
+
+	.notes {
+		border-top: 1px solid lightgray;
+		font-size: 12px;
+
+		&:empty {
+			display: none;
+		}
+	}
+}

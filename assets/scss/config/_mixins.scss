@@ -2,6 +2,8 @@
  * 01. Spacing
  * 02. Placeholder
  * 03. Global Forms
+ * 04. Loop Block
+ * 05. Positioning
  */
 
 
@@ -30,9 +32,29 @@
     #{$property}: 2rem;
   }
 
+  .#{$property_class}-vertical {
+    #{$property}-top: 2rem;
+    #{$property}-bottom: 2rem;
+  }
+
+  .#{$property_class}-horizontal {
+    #{$property}-left: 2rem;
+    #{$property}-right: 2rem;
+  }
+
   @each $type, $size in $spacing-sizes {
     .#{$property_class}-all-#{$type} {
       #{$property}: $size;
+    }
+
+    .#{$property_class}-vertical-#{$type} {
+      #{$property}-top: $size;
+      #{$property}-bottom: $size;
+    }
+
+    .#{$property_class}-horizontal-#{$type} {
+      #{$property}-left: $size;
+      #{$property}-right: $size;
     }
   }
 }
@@ -65,4 +87,34 @@
   background: white;
   border: 1px solid $medium-gray;
   box-shadow: none;
+}
+
+// 04. Loop Block
+@mixin loop-block( $min-height: 280px ) {
+  .content-container {
+    padding: 1rem;
+    min-height: #{$min-height};
+    display: flex;
+
+    // IE 10/11 - Adding some height for safety
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      height: #{$min-height + 30};
+    }
+
+    * {
+      color: $white;
+    }
+
+    h4, h5 {
+      margin-bottom: .25rem;
+    }
+  }
+}
+
+// 05. Positioning
+@mixin position($top, $right: $top, $bottom: $top, $left: $right) {
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
 }

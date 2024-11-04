@@ -7,9 +7,9 @@
  */
 
 /**
- * Class rebar_TinyMCE
+ * Class Hatch_TinyMCE
  */
-class rebar_TinyMCE {
+class Hatch_TinyMCE {
 
 	/**
 	 * Construct.
@@ -34,4 +34,4 @@ class rebar_TinyMCE {
 	}
 }
 
-$rebar_tinymce = new rebar_TinyMCE();
+$hatch_tinymce = new Hatch_TinyMCE();

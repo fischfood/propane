@@ -17,7 +17,7 @@ class HatchActivate {
 	 *  Construct
 	 */
 	function __construct() {
-		add_filter( 'option_page_capability_rebar_activation_options', array( $this, 'activation_options_page_capability' ) );
+		add_filter( 'option_page_capability_hatch_activation_options', array( $this, 'activation_options_page_capability' ) );
 	}
 
 	/**
@@ -41,7 +41,7 @@ class HatchActivate {
  * @access public
  * @return void
  */
-function rebar_add_help_tabs_to_theme_page() {
+function hatch_add_help_tabs_to_theme_page() {
 	$screen = get_current_screen();
 	$screen->add_help_tab( array(
 		'id' => 'hatch-activation-help', // This should be unique for the screen.

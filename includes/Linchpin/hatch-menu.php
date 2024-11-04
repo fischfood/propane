@@ -16,15 +16,7 @@ class HatchMenu {
 	 * @access public
 	 */
 	function __construct() {
-		add_action( 'admin_menu', array( $this, 'admin_menu' ), 999 );
 		add_action( 'wp_before_admin_bar_render', array( $this, 'add_links' ) );
-	}
-
-	/**
-	 * Remove Editor submenu option in admin
-	 */
-	public function admin_menu() {
-		remove_submenu_page( 'themes.php', 'theme-editor.php' );
 	}
 
 	/**

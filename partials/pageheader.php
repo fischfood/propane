@@ -1,17 +1,17 @@
 <?php
 /**
- * Slim Header
+ * Default Header
  *
- * @since 1.0.0
+ * @since      1.0.0
  *
- * @package 
- * @subpackage Partials
+ * @package    Propane
+ * @subpackage TemplateParts
  */
 ?>
 
 <div class="full-page-header container">
-	<div class="row">
-		<div class="small-12 columns">
+	<div class="grid-x">
+		<div class="small-12 cell">
 			<?php
 			the_title( '<h1>', '</h1>', true );
 

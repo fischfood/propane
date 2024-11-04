@@ -7,7 +7,7 @@
  */
 
 ?>
-<?php global $rebar_options; ?>
+<?php global $hatch_options; ?>
 <div id="integration-options">
     <h3><?php esc_html_e( 'Integration Options', 'hatch' ); ?></h3>
     <table class="form-table">
@@ -19,15 +19,15 @@
 						<?php
 						$typekit_id = '';
 
-						if ( isset( $rebar_options['typekit_id'] ) ) {
+						if ( isset( $hatch_options['typekit_id'] ) ) {
 							$typekit_id = esc_attr( $typekit_id );
 						}
 						?>
-						<label class="screen-reader-text" for="typekit_id"><span><?php esc_html_e( 'Typekit ID', 'hatch' ); ?></span></label> <input type="text" name="rebar_theme_options[typekit_id]" class="regular-text" id="typekit_id" value="<?php esc_attr_e( $typekit_id ); ?>"> <label class="screen-reader-text" for="typekit_async"><span><?php esc_html_e( 'Load TypeKit Asyncronously', 'hatch' ); ?></span></label> <select name="rebar_theme_options[typekit_async]" id="rebar_theme_options[typekit_async]">
-                            <option value="true" <?php selected( $rebar_options['typekit_async'], true ); ?>>
+						<label class="screen-reader-text" for="typekit_id"><span><?php esc_html_e( 'Typekit ID', 'hatch' ); ?></span></label> <input type="text" name="hatch_theme_options[typekit_id]" class="regular-text" id="typekit_id" value="<?php esc_attr_e( $typekit_id ); ?>"> <label class="screen-reader-text" for="typekit_async"><span><?php esc_html_e( 'Load TypeKit Asyncronously', 'hatch' ); ?></span></label> <select name="hatch_theme_options[typekit_async]" id="hatch_theme_options[typekit_async]">
+                            <option value="true" <?php selected( $hatch_options['typekit_async'], true ); ?>>
                                 <?php esc_html_e( 'Yes', 'hatch' ); ?>
                             </option>
-                            <option value="false" <?php selected( $rebar_options['typekit_async'], false ); ?>>
+                            <option value="false" <?php selected( $hatch_options['typekit_async'], false ); ?>>
                                 <?php esc_html_e( 'No', 'hatch' ); ?>
                             </option>
                         </select>
@@ -49,7 +49,9 @@
                                     <td>
                                         <div>
                                             <label class="screen-reader-text" for="additional_header_scripts"><span><?php esc_html_e( 'Additional Head Scripts', 'hatch' ); ?></span></label>
-                                            <textarea name="rebar_theme_options[additional_header_scripts]" class="html-textarea" id="additional_header_scripts"><?php esc_attr_e( $rebar_options['additional_header_scripts'] ); ?></textarea>
+                                            <textarea name="hatch_theme_options[additional_header_scripts]" class="html-textarea" id="additional_header_scripts">
+<?php esc_attr_e( $hatch_options['additional_header_scripts'] ); ?>
+</textarea>
                                             <p class="description"><?php printf( esc_html( __( 'This area will include scripts within the <strong>&lt;HEAD&gt;</strong> tag of your website. In most cases you can use the footer scripts below. Through some scripts require being loaded within the <strong>&lt;HEAD&gt;</strong> tag.' ), 'hatch' ) ); ?></p>
                                         </div>
                                     </td>
@@ -65,7 +67,9 @@
                                     <td>
                                         <div>
                                             <label class="screen-reader-text" for="additional_footer_scripts"><span><?php esc_html_e( 'Additional Footer Scripts', 'hatch' ); ?></span></label>
-                                            <textarea name="rebar_theme_options[additional_footer_scripts]" class="html-textarea" id="additional_footer_scripts"><?php esc_attr_e( $rebar_options['additional_footer_scripts'] ); ?></textarea>
+                                            <textarea name="hatch_theme_options[additional_footer_scripts]" class="html-textarea" id="additional_footer_scripts">
+                                                <?php esc_attr_e( $hatch_options['additional_footer_scripts'] ); ?>
+                                            </textarea>
                                             <p class="description"><?php printf( esc_html( __( 'Within this area you can include any additional 3rd party scripts. Examples would include javascript needed for Twitter, HubSpot and other features not included by default within your theme' ), 'hatch' ) ); ?></p>
                                         </div>
                                     </td>

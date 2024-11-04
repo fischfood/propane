@@ -53,3 +53,14 @@ ol.commentlist {
 	li.odd { background: #f6f6f6; }
 
 }
+
+.post-sharing {
+
+	li {
+		display: inline-block !important;
+
+		@include breakpoint( large up ) {
+			display: block !important;
+		}
+	}
+}
